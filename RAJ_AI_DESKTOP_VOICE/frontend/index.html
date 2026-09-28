@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070a12" />
+    <title>RAJ AI — Personal Laptop Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark"><span>R</span></div>
+          <div>
+            <p class="eyebrow">PERSONAL SYSTEM</p>
+            <h1>RAJ <span>AI</span></h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <div class="status-pill" id="globalStatus">
+            <span class="status-dot"></span>
+            <span id="globalStatusText">CONNECTING</span>
+          </div>
+          <button class="icon-button" id="clearHistoryButton" type="button" title="Clear conversation history" aria-label="Clear conversation history">⌫</button>
+        </div>
+      </header>
+
+      <section class="hero-grid">
+        <section class="hero-panel panel">
+          <div class="panel-kicker"><span class="live-pulse"></span> YOUR PERSONAL LAPTOP ASSISTANT</div>
+          <div class="hero-copy">
+            <p class="hero-pretitle">Say hello to</p>
+            <h2>RAJ<span class="accent-dot">.</span></h2>
+            <p class="hero-subtitle">Your Personal Laptop Assistant</p>
+          </div>
+
+          <div class="orb-wrap">
+            <div class="orb-halo"></div>
+            <div class="orb" id="assistantOrb" data-state="READY">
+              <div class="orb-core">
+                <span class="orb-label" id="orbLabel">READY</span>
+                <span class="orb-line"></span>
+                <span class="orb-caption">LISTENING FOR YOU</span>
+              </div>
+              <i class="orb-ring ring-a"></i>
+              <i class="orb-ring ring-b"></i>
+              <i class="orb-ring ring-c"></i>
+            </div>
+          </div>
+
+          <div class="voice-controls">
+            <button class="mic-button" id="micButton" type="button" aria-label="Start voice recognition">
+              <span class="mic-icon">●</span>
+            </button>
+            <div>
+              <p class="voice-title" id="voicePrompt">Tap to Speak</p>
+              <p class="voice-hint" id="voiceHint">Use your voice or type a command below</p>
+            </div>
+          </div>
+
+          <div class="command-composer">
+            <input id="commandInput" type="text" autocomplete="off" placeholder="Type a command for RAJ…" aria-label="Type a command for RAJ" />
+            <button id="sendButton" type="button">SEND <span>↗</span></button>
+          </div>
+
+          <div class="always-listening">
+            <div>
+              <p>Always Listening</p>
+              <span id="alwaysListeningCaption">Wait for the wake word “Raj”</span>
+            </div>
+            <button class="toggle" id="alwaysListeningToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle always listening">
+              <span></span>
+            </button>
+          </div>
+        </section>
+
+        <aside class="dashboard-column">
+          <section class="panel dashboard-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">SYSTEM OVERVIEW</p>
+                <h3>Dashboard</h3>
+              </div>
+              <span class="signal-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+            </div>
+            <div class="system-status">
+              <div class="system-status-title"><span class="status-dot"></span> <span id="backendStatus">OFFLINE</span></div>
+              <span class="system-status-meta" id="backendStatusMeta">Local backend</span>
+            </div>
+            <div class="metric-list">
+              <div class="metric-row"><span>Backend status</span><strong id="backendMetric">CONNECTING</strong></div>
+              <div class="metric-row"><span>Microphone</span><strong id="microphoneMetric">READY</strong></div>
+              <div class="metric-row"><span>Always listening</span><strong id="alwaysMetric">OFF</strong></div>
+            </div>
+            <div class="last-action">
+              <div class="last-action-label">LAST COMMAND <span></span></div>
+              <p id="lastCommand">No commands yet</p>
+              <div class="last-action-label">LAST RESPONSE <span></span></div>
+              <p id="lastResponse">Ready when you are.</p>
+            </div>
+          </section>
+
+          <section class="panel quick-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">ONE-TOUCH CONTROL</p>
+                <h3>Quick actions</h3>
+              </div>
+              <span class="shortcut-hint">LOCAL</span>
+            </div>
+            <div class="quick-grid">
+              <button type="button" data-command="open chrome"><span class="quick-icon browser-icon">◌</span>Chrome</button>
+              <button type="button" data-command="open youtube"><span class="quick-icon">▶</span>YouTube</button>
+              <button type="button" data-command="open vs code"><span class="quick-icon code-icon">&lt;/&gt;</span>VS Code</button>
+              <button type="button" data-command="open calculator"><span class="quick-icon">＋</span>Calculator</button>
+              <button type="button" data-command="open notepad"><span class="quick-icon">▤</span>Notepad</button>
+              <button type="button" data-command="open file explorer"><span class="quick-icon">□</span>File Explorer</button>
+              <button type="button" data-command="volume up"><span class="quick-icon">◖</span>Volume +</button>
+              <button type="button" data-command="volume down"><span class="quick-icon">◗</span>Volume −</button>
+              <button type="button" data-command="take a screenshot"><span class="quick-icon">▣</span>Screenshot</button>
+              <button type="button" data-command="lock laptop"><span class="quick-icon">⌑</span>Lock</button>
+              <button type="button" data-command="show desktop"><span class="quick-icon">▥</span>Show Desktop</button>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="lower-grid">
+        <section class="panel conversation-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">LIVE LOG</p>
+              <h3>Conversation</h3>
+            </div>
+            <span class="recording-indicator"><span></span> SESSION</span>
+          </div>
+          <div class="conversation-list" id="conversationList" aria-live="polite"></div>
+        </section>
+
+        <section class="panel history-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">RECENT ACTIVITY</p>
+              <h3>Command history</h3>
+            </div>
+            <span class="history-count" id="historyCount">0</span>
+          </div>
+          <div class="history-list" id="historyList"></div>
+        </section>
+      </section>
+
+      <footer class="footer">
+        <span><span class="footer-dot"></span> RAJ CORE v1.0</span>
+        <span>LOCAL • PRIVATE • WINDOWS 10 / 11</span>
+      </footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
